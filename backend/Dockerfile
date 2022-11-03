@@ -35,3 +35,5 @@ ENTRYPOINT ["entrypoint.sh"]
 
 # 開発用サーバーの実行
 CMD ["rails", "server", "-b", "0.0.0.0"]
+
+
