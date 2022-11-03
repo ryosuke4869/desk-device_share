@@ -5,7 +5,7 @@ FROM ruby:2.7.5-alpine
 ARG WORKDIR
 
 # パッケージを永続使用/一時的使用の2つの変数にまとめる
-ARG RUNTIME_PACKAGES="bash imagemagick nodejs yarn tzdata mysql-dev mysql-client git　less"
+ARG RUNTIME_PACKAGES="bash imagemagick nodejs yarn tzdata mysql-dev mysql-client git less"
 ARG DEV_PACKAGES="build-base curl-dev"
 
 # docker-composeで受け取ったWORKDIRを展開して、RailsコンテナのHOMEという環境変数を設定する(ホームディレクトリを設定)
