@@ -34,3 +34,25 @@ services:
     # dbコンテナ起動後にbackendコンテナを起動
     depends_on:
       - db
+    stdin_open: true
+    tty: true
+
+  frontend:
+    # frontendにあるDockerfileをもとにイメージを生成する
+    build:
+      context: ./frontend
+      # .envの環境変数を展開して、WORKDIRという引数を登録し、frontend/Dockerfileに渡す
+      args:
+        WORKDIR: $WORKDIR
+    # frontendディレクトリにあるホストのファイルとコンテナを同期
+    volumes:
+      - "./frontend:/$WORKDIR"
+    # ホストの3000番ポートをコンテナの3000番ポートに繋ぐ
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    command: npm run serve
+    # backendコンテナ起動後にfrontendコンテナを起動
+    depends_on:
+      - backend
