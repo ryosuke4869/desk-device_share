@@ -1,8 +1,9 @@
 <template>
   <v-app>
+    <Header />
     <v-main>
       <nav>
-        <router-link to="/">Home</router-link> |
+        <router-link to="/">Top</router-link> |
         <router-link to="/about">About</router-link>
       </nav>
       <router-view/>
@@ -11,12 +12,19 @@
 </template>
 
 <script>
+// Components
+import Header from './components/Header.vue';
 
 export default {
   name: 'App',
 
+  components: {
+    Header,
+  },
+
   data: () => ({
     //
   }),
+
 }
 </script>
