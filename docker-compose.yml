@@ -2,7 +2,6 @@
 version: '3.8'
 
 services:
-
   db:
     # DockerHubにあるmysql8.0のイメージを使用
     image: mysql:8.0.28
@@ -30,7 +29,29 @@ services:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
     # ホストの8000番ポートをコンテナの3000番ポートに繋ぐ
     ports:
-      - "8000:3000"
+      - "3000:3000"
     # dbコンテナ起動後にbackendコンテナを起動
     depends_on:
       - db
+    stdin_open: true
+    tty: true
+
+  frontend:
+    # frontendにあるDockerfileをもとにイメージを生成する
+    build:
+      context: ./frontend
+      # .envの環境変数を展開して、WORKDIRという引数を登録し、frontend/Dockerfileに渡す
+      args:
+        WORKDIR: $WORKDIR
+    # frontendディレクトリにあるホストのファイルとコンテナを同期
+    volumes:
+      - "./frontend:/$WORKDIR"
+    # ホストの3000番ポートをコンテナの3000番ポートに繋ぐ
+    ports:
+      - "8080:8080"
+    tty: true
+    stdin_open: true
+    command: npm run serve
+    # backendコンテナ起動後にfrontendコンテナを起動
+    depends_on:
+      - backend
