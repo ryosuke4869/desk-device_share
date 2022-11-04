@@ -11,7 +11,4 @@ ENV HOME=/${WORKDIR}
 WORKDIR ${HOME}
 
 # Alpineのリポジトリから最新インデックスを取得し、npm自体も最新版に更新する
-RUN apk update
-COPY package.json .
-RUN npm install
-
+RUN apk update && npm install -g @vue/cli
