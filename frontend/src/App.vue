@@ -31,3 +31,16 @@ export default {
 
 }
 </script>
+
+<style>
+  .info{
+    background-color: cornflowerblue;
+    font-size: large;
+  }
+
+  .routerLink {
+    color: white;
+    text-decoration: none;
+    font-size: large;
+  }
+</style>
