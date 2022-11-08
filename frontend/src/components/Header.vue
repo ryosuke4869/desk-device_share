@@ -25,10 +25,4 @@
   }
 </script>
 
-<style>
-  .routerLink {
-    color: white;
-    text-decoration: none;
-    font-size: large;
-  }
-</style>
+
