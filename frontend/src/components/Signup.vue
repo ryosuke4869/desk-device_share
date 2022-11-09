@@ -16,3 +16,19 @@
     </v-card>
   </v-app>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      name: '',
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    signUp () {}
+  }
+}
+</script>
+

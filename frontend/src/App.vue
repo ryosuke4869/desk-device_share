@@ -24,11 +24,12 @@ export default {
     Header,
     Footer
   },
-
-  data: () => ({
-    //
-  }),
-
+  computed: {
+    isAuthenticated () { /*ログインしていたらtrueを返す*/ }
+  },
+  methods: {
+    logOut () {}
+  }
 }
 </script>
 
