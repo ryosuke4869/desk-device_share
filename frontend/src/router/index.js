@@ -8,23 +8,26 @@ import signup from "../views/Signup.vue";
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'top',
     component: Top
   },
 
   {
     path: '/about',
     name: 'about',
+    meta: { title: 'Description'}
   },
   //deviceのroutes
   {
     path: '/login',
     name: 'Login',
+    meta: { title: 'Login'},
     component: login
   },
   {
     path: '/signup',
     name: 'Signup',
+    meta: { title: 'Signup'},
     component: signup
   }
 ]
