@@ -20,8 +20,26 @@ import Footer from './components/Footer.vue'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-
+  methods: {
+    createTitleDesc : function(routeInstance){
+        //titleを設定する処理
+      if(routeInstance.meta.title){
+        var setTitle = routeInstance.meta.title + ' | Desk&Device sharing';
+        document.title = setTitle;
+      } else {
+        document.title = 'Desk&Device sharing'
+      }
+    }
+  },
+  mounted : function(){
+    var routeInstance = this.$route;
+    this.createTitleDesc(routeInstance);
+  },
+  watch: {
+    '$route' (routeInstance, from) {
+      this.createTitleDesc(routeInstance);
+    }
+  },
   components: {
     Header,
     Footer,
@@ -29,9 +47,6 @@ export default {
   },
   computed: {
     isAuthenticated () { /*ログインしていたらtrueを返す*/ }
-  },
-  methods: {
-    logOut () {}
   }
 }
 </script>
