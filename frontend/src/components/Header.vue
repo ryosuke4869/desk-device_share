@@ -1,7 +1,11 @@
 <template>
-  <div class="top">
+  <div class="header">
     <v-app-bar color="deep-purple" dark>
-      <v-toolbar-title class="ma-5">D&D.Sharing</v-toolbar-title>
+      <v-toolbar-title class="ma-5">
+        <router-link class="routerLink" to="/">
+          D&D Sharing
+        </router-link>
+      </v-toolbar-title>
       <v-btn class="ma-2">
         <router-link class="routerLink" to="/signup">
           新規登録
@@ -17,11 +21,8 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      drawer: false,
-      group: null,
-    })
+  export default{
+
   }
 </script>
 

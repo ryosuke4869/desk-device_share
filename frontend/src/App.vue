@@ -7,6 +7,7 @@
         <router-link to="/about">About</router-link>
       </nav>
       <router-view/>
+      <HelloWorld />
     </v-main>
     <Footer />
   </v-app>
@@ -14,21 +15,39 @@
 
 <script>
 // Components
-import Header from './components/Header.vue';
+import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-
+  methods: {
+    createTitleDesc : function(routeInstance){
+        //titleを設定する処理
+      if(routeInstance.meta.title){
+        var setTitle = routeInstance.meta.title + ' | Desk&Device sharing';
+        document.title = setTitle;
+      } else {
+        document.title = 'Desk&Device sharing'
+      }
+    }
+  },
+  mounted : function(){
+    var routeInstance = this.$route;
+    this.createTitleDesc(routeInstance);
+  },
+  watch: {
+    '$route' (routeInstance, from) {
+      this.createTitleDesc(routeInstance);
+    }
+  },
   components: {
     Header,
-    Footer
+    Footer,
+    HelloWorld
   },
-
-  data: () => ({
-    //
-  }),
-
+  computed: {
+    isAuthenticated () { /*ログインしていたらtrueを返す*/ }
+  }
 }
 </script>
 

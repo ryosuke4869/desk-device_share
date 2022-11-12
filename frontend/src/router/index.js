@@ -2,33 +2,32 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Top from '../views/Top.vue';
 
 // deviceのimport
-import login from "../components/Login.vue";
-import signup from "../components/Signup.vue";
+import login from "../views/Login.vue";
+import signup from "../views/Signup.vue";
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'top',
     component: Top
   },
 
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    meta: { title: 'Description'}
   },
   //deviceのroutes
   {
     path: '/login',
     name: 'Login',
+    meta: { title: 'Login'},
     component: login
   },
   {
     path: '/signup',
     name: 'Signup',
+    meta: { title: 'Signup'},
     component: signup
   }
 ]
