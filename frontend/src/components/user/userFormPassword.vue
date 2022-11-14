@@ -1,11 +1,19 @@
 <template>
   <v-text-field
     prepend-icon="mdi-lock"
-    append-icon="mdi-eye-off"
     placeholder="8文字以上"
-    type="password"
     label="パスワード"
-    v-model="password"
+
+    v-model="setPassword"
+    :rules="form.rules"
+    :hide-details="noValidation"
+    :hint="form.hint"
+    :counter="!noValidation"
+    :append-icon="toggle.icon"
+    :type="toggle.type"
+    outlined
+    autocomplete="on"
+    @click:append="show = !show"
   />
 </template>
 
@@ -16,6 +24,37 @@
       password: {
         type: String,
         default: ''
+      },
+      noValidation: {
+        type: Boolean,
+        default: false
+      }
+    },
+    data(){
+      return {
+        show: false
+      }
+    },
+    computed: {
+      setPassword: {
+        get() { return this.password },
+        set (newVal) { return this.$emit('update:password', newVal) }
+      },
+      toggle(){
+        const icon = this.show ? 'mdi-eye' : 'mdi-eye-off'
+        const type = this.show ? 'text' : 'password'
+        return { icon, type }
+      },
+      form () {
+        const min = '8文字以上'
+        const msg = `${min}。半角英数字•ﾊｲﾌﾝ•ｱﾝﾀﾞｰﾊﾞｰが使えます`
+        const required = v => !!v || ''
+        const format = v => /^[\w-]{8,72}$/.test(v) || msg
+
+        const rules = this.noValidation ? [required] : [format]
+        const hint = this.noValidation ? undefined : msg
+        const placeholder = this.noValidation ? undefined : min
+        return { rules, hint, placeholder }
       }
     }
   }

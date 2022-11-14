@@ -45,9 +45,6 @@ export default {
     Footer,
     HelloWorld
   },
-  computed: {
-    isAuthenticated () { /*ログインしていたらtrueを返す*/ }
-  }
 }
 </script>
 

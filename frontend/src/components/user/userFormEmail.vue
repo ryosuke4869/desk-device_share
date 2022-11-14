@@ -2,7 +2,8 @@
   <v-text-field
     prepend-icon="mdi-email-outline"
     label="メールアドレス"
-    v-model="email"
+    v-model="setEmail"
+    :rules="rules"
   />
 </template>
 <script>
@@ -12,6 +13,28 @@
       email: {
         type: String,
         default: ''
+      },
+      noValidation: {
+        type: Boolean,
+        default: false
+      }
+    },
+    data () {
+      return {
+        rules: [
+          v => !!v || '',
+          v => /.+@.+\..+/.test(v) || ''
+        ]
+      }
+    },
+    computed: {
+      setEmail: {
+        get () { return this.email },
+        set (newVal) { return this.$emit('update:email', newVal) }
+      },
+      form () {
+        const placeholder = this.noValidation ? undefined : 'your@email.com'
+        return { placeholder }
       }
     }
   }

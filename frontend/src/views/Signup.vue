@@ -4,20 +4,19 @@
       class="mx-auto mt-5"
     >
       <!-- <UserFormCard /> -->
-
       <v-card-text>
         <v-form
           ref="form"
           v-model="isValid"
         >
           <user-form-name
-            :name.sync="params.user.name"
+          v-model:name="params.user.name"
           />
           <user-form-email
-            :email.sync="params.user.email"
+            v-model:email="params.user.email"
           />
           <user-form-password
-            :password.sync="params.user.password"
+            v-model:password="params.user.password"
           />
 
           <v-card-actions>
@@ -25,15 +24,14 @@
               <v-btn
                 class="info"
                 color="white"
-                :disabled="!isValid || loading"
                 :loading="loading"
-                @click="signUp"
+                :disabled="!isValid || loading"
+                @click="signup"
               >
                 新規登録
               </v-btn>
             </v-row>
           </v-card-actions>
-
         </v-form>
         <v-card-text>
           {{ params }}
@@ -55,12 +53,13 @@ export default {
   data() {
     return {
       isValid: false,
-      loading: false,
+      loading:false,
       params: { user: { name: '', email: '', password: '' } }
     };
   },
   methods: {
-    signUp() {
+
+    signup () {
       this.loading = true
       setTimeout(() => {
         this.formReset()

@@ -27,7 +27,6 @@ services:
     # .envの環境変数を展開して、Railsの環境変数MYSQL_ROOT_PASSWORDを登録
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-    # ホストの8000番ポートをコンテナの3000番ポートに繋ぐ
     ports:
       - "3000:3000"
     # dbコンテナ起動後にbackendコンテナを起動
