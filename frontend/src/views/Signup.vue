@@ -33,11 +33,9 @@
             </v-row>
           </v-card-actions>
         </v-form>
-
         <v-card-text>
           {{ params }}
         </v-card-text>
-
       </v-card-text>
     </v-card>
   </v-app>
@@ -60,6 +58,7 @@ export default {
     };
   },
   methods: {
+
     signup () {
       this.loading = true
       setTimeout(() => {

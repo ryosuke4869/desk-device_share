@@ -6,7 +6,6 @@
   :rules="rules"
   :counter="max"
   />
-
 </template>
 
 <script>
@@ -35,3 +34,4 @@
     },
   }
   </script>
+
